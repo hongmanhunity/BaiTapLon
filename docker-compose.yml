@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  # Web application service (PHP + Apache)
+  web:
+    build: .
+    container_name: baitaplon_web
+    restart: always
+    ports:
+      - "80:80"
+    environment:
+      - DB_HOST=db
+      - DB_USER=root
+      - DB_PASS=${DB_PASSWORD:-root_password}
+      - DB_NAME=${DB_NAME:-Baitaplon}
+    volumes:
+      # Mount codebase to allow hot-reloading changes (optional, useful for development)
+      - .:/var/www/html/Baitaplon
+    depends_on:
+      - db
+
+  # Database service (MySQL)
+  db:
+    image: mysql:8.0
+    container_name: baitaplon_db
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD:-root_password}
+      - MYSQL_DATABASE=${DB_NAME:-Baitaplon}
+    volumes:
+      # Persistent volume for MySQL database files
+      - mysql_data:/var/lib/mysql
+      # Auto-import sql script if placed in this local directory on initial launch
+      - ./db_init:/docker-entrypoint-initdb.d
+    command: --default-authentication-plugin=mysql_native_password
+
+  # Database administration tool (phpMyAdmin)
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: baitaplon_phpmyadmin
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      - PMA_HOST=db
+      - PMA_USER=root
+      - PMA_PASSWORD=${DB_PASSWORD:-root_password}
+    depends_on:
+      - db
+
+volumes:
+  mysql_data:

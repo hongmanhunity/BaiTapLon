@@ -1,0 +1,12 @@
+.git
+.dockerignore
+Dockerfile
+docker-compose.yml
+.env
+.env.example
+db_init/
+mysql_data/
+*.sql
+*.md
+.idea/
+.vscode/
