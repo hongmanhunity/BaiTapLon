@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "80:80"
+    environment:
+      - DB_HOST=db
+      - DB_PASS=rootpassword
+    volumes:
+      # Mount folder Baitaplon hiện tại vào /var/www/html/Baitaplon
+      - .:/var/www/html/Baitaplon
+      # Mount folder WinmartMVC (nằm ngang hàng) vào /var/www/html/WinmartMVC
+      - ../WinmartMVC:/var/www/html/WinmartMVC
+    depends_on:
+      - db
+
+  db:
+    image: mariadb:10.11
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: Baitaplon
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      # Tự động nạp database.sql khi DB vừa khởi tạo lần đầu
+      - ./database.sql:/docker-entrypoint-initdb.d/database.sql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: rootpassword
+    depends_on:
+      - db
+
+volumes:
+  db_data:
