@@ -7,7 +7,7 @@ RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
 RUN a2enmod rewrite
 
 # Cho phép .htaccess ghi đè cấu hình (Sửa lỗi 404 Not Found)
-RUN sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
+RUN sed -i 's/AllowOverride None/AllowOverride All/g' /etc/apache2/apache2.conf
 
 # Đảm bảo quyền truy cập cho thư mục web
 RUN chown -R www-data:www-data /var/www/html

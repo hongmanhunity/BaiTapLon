@@ -70,7 +70,7 @@
 <div class="dashboard-cards">
     <div class="card-box">
         <div class="card-info">
-            <h3><?php echo number_format($data['doanhthu']); ?> đ</h3>
+            <h3><?php echo number_format($data['doanhthu'] ?? 0); ?> đ</h3>
             <p>Doanh Thu</p>
         </div>
         <div class="card-icon bg-1"><i class="fas fa-money-bill-wave"></i></div>
