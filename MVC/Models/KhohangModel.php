@@ -2,7 +2,7 @@
 class KhohangModel extends connectDB {
     
     // --- CÁC HÀM CƠ BẢN ---
-    public function GetAllNCC() { return mysqli_query($this->con, "SELECT * FROM Nhacungcap"); }
+    public function GetAllNCC() { return mysqli_query($this->con, "SELECT * FROM nhacungcap"); }
     public function GetAllSP() { return mysqli_query($this->con, "SELECT * FROM Sanpham"); }
     public function GetSP($id) { return mysqli_query($this->con, "SELECT * FROM Sanpham WHERE MaSP='$id'"); }
     
@@ -18,7 +18,7 @@ class KhohangModel extends connectDB {
         return null;
     }
     public function GetMaNCCByTen($ten) { /* ... (Giữ nguyên code cũ) ... */ 
-        $sql = "SELECT MaNCC FROM Nhacungcap WHERE TenNCC LIKE '%$ten%' LIMIT 1";
+        $sql = "SELECT MaNCC FROM nhacungcap WHERE TenNCC LIKE '%$ten%' LIMIT 1";
         $kq = mysqli_query($this->con, $sql);
         if(mysqli_num_rows($kq) > 0) { $row = mysqli_fetch_array($kq); return $row['MaNCC']; }
         return null;
@@ -42,13 +42,13 @@ class KhohangModel extends connectDB {
 
     public function GetLichSuNhap($keyword = "") {
         $searchID = preg_replace('/[^0-9]/', '', $keyword);
-        $sql = "SELECT Phieunhap.MaPN, Phieunhap.NgayNhap, Phieunhap.TongTien, Nhacungcap.TenNCC,
+        $sql = "SELECT Phieunhap.MaPN, Phieunhap.NgayNhap, Phieunhap.TongTien, nhacungcap.TenNCC,
                        GROUP_CONCAT(CONCAT('<div style=\"border-bottom:1px dashed #eee; padding:3px 0;\">','<b>', Sanpham.TenSP, '</b>',' - SL: <b style=\"color:blue\">', ChitietPhieunhap.SoLuong, '</b>',' - Giá: ', FORMAT(ChitietPhieunhap.DonGia, 0), 'đ','</div>') SEPARATOR '') as ChiTietNhap
                 FROM Phieunhap
-                LEFT JOIN Nhacungcap ON Phieunhap.MaNCC = Nhacungcap.MaNCC
+                LEFT JOIN nhacungcap ON Phieunhap.MaNCC = nhacungcap.MaNCC
                 LEFT JOIN ChitietPhieunhap ON Phieunhap.MaPN = ChitietPhieunhap.MaPN
                 LEFT JOIN Sanpham ON ChitietPhieunhap.MaSP = Sanpham.MaSP";
-        if($keyword != "") $sql .= " WHERE Phieunhap.MaPN LIKE '%$searchID%' OR Nhacungcap.TenNCC LIKE '%$keyword%'";
+        if($keyword != "") $sql .= " WHERE Phieunhap.MaPN LIKE '%$searchID%' OR nhacungcap.TenNCC LIKE '%$keyword%'";
         $sql .= " GROUP BY Phieunhap.MaPN ORDER BY Phieunhap.NgayNhap DESC";
         return mysqli_query($this->con, $sql);
     }

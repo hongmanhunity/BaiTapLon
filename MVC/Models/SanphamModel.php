@@ -3,10 +3,10 @@ class SanphamModel extends connectDB {
 
     // 1. Lấy danh sách (Giữ nguyên)
     public function GetSanpham($keyword = "") {
-        $sql = "SELECT Sanpham.*, Danhmuc.TenDM, Nhacungcap.TenNCC 
+        $sql = "SELECT Sanpham.*, Danhmuc.TenDM, nhacungcap.TenNCC 
                 FROM Sanpham 
                 LEFT JOIN Danhmuc ON Sanpham.MaDM = Danhmuc.MaDM
-                LEFT JOIN Nhacungcap ON Sanpham.MaNCC = Nhacungcap.MaNCC";
+                LEFT JOIN nhacungcap ON Sanpham.MaNCC = nhacungcap.MaNCC";
         
         if($keyword != "") {
             $sql .= " WHERE Sanpham.TenSP LIKE '%$keyword%' OR Sanpham.MaSP LIKE '%$keyword%'";
