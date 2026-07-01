@@ -1,6 +1,6 @@
 <div class="card" style="width: 50%; margin: 0 auto;">
     <div class="card-header">
-        <h3>Thêm Tài khoản mới</h3>
+        <h3>Thêm Tài khoản</h3>
     </div>
     <div class="card-body">
         <form action="/Baitaplon/Taikhoan/Store" method="POST">
