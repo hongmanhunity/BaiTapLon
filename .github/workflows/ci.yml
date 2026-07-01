@@ -17,8 +17,7 @@ jobs:
     - name: Checkout WinmartMVC repository
       uses: actions/checkout@v4
       with:
-        # Thay 'USERNAME_CUA_BAN' bằng tên tài khoản GitHub của bạn
-        repository: USERNAME_CUA_BAN/WinmartMVC 
+        repository: hongmanhunity/WinmartMVC 
         path: ../WinmartMVC
         # LƯU Ý: Nếu repo WinmartMVC để ở chế độ Private (Riêng tư), 
         # bạn cần dùng Personal Access Token (PAT) bỏ comment dòng dưới:
