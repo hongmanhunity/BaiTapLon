@@ -17,6 +17,18 @@ class TaikhoanModel extends connectDB {
         return mysqli_fetch_assoc($result);
     }
 
+    // 1.5. Kiểm tra Đăng nhập
+    public function CheckLogin($user, $pass){
+        // Do password lưu dạng thô nên ta so sánh trực tiếp
+        // Nếu dự án thực tế nên dùng password_hash và password_verify
+        $sql = "SELECT * FROM taikhoan WHERE username='$user' AND password='$pass' LIMIT 1";
+        $result = mysqli_query($this->con, $sql);
+        if(mysqli_num_rows($result) > 0){
+            return mysqli_fetch_assoc($result);
+        }
+        return false;
+    }
+
     // 2. Thêm mới (BỎ MD5)
     public function Insert($user, $pass, $hoten, $role){
         $check = mysqli_query($this->con, "SELECT * FROM taikhoan WHERE username='$user'");

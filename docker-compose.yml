@@ -9,8 +9,6 @@ services:
     volumes:
       # Mount folder Baitaplon hiện tại vào /var/www/html/Baitaplon
       - .:/var/www/html/Baitaplon
-      # Mount folder WinmartMVC (nằm ngang hàng) vào /var/www/html/WinmartMVC
-      - ../WinmartMVC:/var/www/html/WinmartMVC
     depends_on:
       - db
 

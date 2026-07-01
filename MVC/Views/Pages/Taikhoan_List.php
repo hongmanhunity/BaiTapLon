@@ -2,18 +2,18 @@
     <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
         <h3>Danh sách Tài khoản</h3>
         <a href="/Baitaplon/Taikhoan/Create" style="background: #28a745; color: white; padding: 8px 15px; text-decoration: none; border-radius: 4px;">
-            <i class="fas fa-plus"></i> Thêm mới
+            <i class="fas fa-plus"></i> Thêm tài khoản
         </a>
     </div>
     <div class="card-body">
         <table style="width: 100%; border-collapse: collapse;">
             <thead>
                 <tr style="background: #f8f9fa; border-bottom: 2px solid #dee2e6;">
-                    <th style="padding: 10px; text-align: left;">ID</th>
-                    <th style="padding: 10px; text-align: left;">Tên tài khoản người dùng</th>
-                    <th style="padding: 10px; text-align: left;">Họ tên</th>
-                    <th style="padding: 10px; text-align: left;">Quyền hạn</th>
-                    <th style="padding: 10px; text-align: center;">Hành động</th>
+                    <th style="padding: 13px; text-align: left;">ID</th>
+                    <th style="padding: 13px; text-align: left;">Username</th>
+                    <th style="padding: 13px; text-align: left;">Họ tên</th>
+                    <th style="padding: 13px; text-align: left;">Quyền hạn</th>
+                    <th style="padding: 13px; text-align: center;">Hành động</th>
                 </tr>
             </thead>
             <tbody>
