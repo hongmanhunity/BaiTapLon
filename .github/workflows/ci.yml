@@ -1,4 +1,4 @@
-name: CI Pipeline
+name: CI/CD Pipeline
 
 on:
   push:
@@ -36,10 +36,39 @@ jobs:
         docker-compose ps
         
         # Kiểm tra xem có container nào bị thoát (Exit) không
-        if [ "$(docker-compose ps -q | xargs docker inspect -f '{{ .State.Running }}' | grep false)" ]; then
+        if [ "$(docker-compose ps -q | xargs -r docker inspect -f '{{ .State.Running }}' | grep false)" ]; then
           echo "Một số container không thể khởi động!"
           docker-compose logs
           exit 1
         else
           echo "Tất cả các container đã chạy thành công."
         fi
+
+  deploy:
+    # CD chỉ chạy khi bước CI (build-and-test) ở trên thành công
+    needs: build-and-test
+    # Chạy trên máy ảo Ubuntu (VirtualBox) của bạn
+    runs-on: self-hosted
+    # Tùy chọn: chỉ deploy khi push vào nhánh chính, không deploy với Pull Request
+    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Checkout WinmartMVC repository
+      uses: actions/checkout@v4
+      with:
+        repository: hongmanhunity/WinmartMVC 
+        path: ../WinmartMVC
+
+    - name: Deploy with Docker Compose
+      run: |
+        # Dừng các container đang chạy và xóa bỏ chúng
+        docker-compose down
+        
+        # Build lại image (để lấy thay đổi code mới nhất) và chạy lại ở chế độ ngầm
+        docker-compose up -d --build
+        
+        # Dọn dẹp các Docker image cũ (dangling images) để giải phóng dung lượng ổ cứng
+        docker image prune -f
