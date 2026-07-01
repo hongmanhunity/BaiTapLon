@@ -35,3 +35,25 @@ jobs:
           echo "Tất cả các container đã chạy thành công."
         fi
 
+  deploy:
+    # CD chỉ chạy khi bước CI (build-and-test) ở trên thành công
+    needs: build-and-test
+    # Chạy trên máy ảo Ubuntu (VirtualBox) của bạn
+    runs-on: self-hosted
+    # Tùy chọn: chỉ deploy khi push vào nhánh chính, không deploy với Pull Request
+    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Deploy with Docker Compose
+      run: |
+        # Dừng các container đang chạy và xóa bỏ chúng
+        docker compose down
+        
+        # Build lại image (để lấy thay đổi code mới nhất) và chạy lại ở chế độ ngầm
+        docker compose up -d --build
+        
+        # Dọn dẹp các Docker image cũ (dangling images) để giải phóng dung lượng ổ cứng
+        docker image prune -f
