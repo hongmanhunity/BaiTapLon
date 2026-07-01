@@ -18,10 +18,13 @@ jobs:
       uses: actions/checkout@v4
       with:
         repository: hongmanhunity/WinmartMVC 
-        path: ../WinmartMVC
-        # LƯU Ý: Nếu repo WinmartMVC để ở chế độ Private (Riêng tư), 
-        # bạn cần dùng Personal Access Token (PAT) bỏ comment dòng dưới:
-        # token: ${{ secrets.PAT_TOKEN }}
+        path: temp-WinmartMVC
+
+    - name: Fix Directory Structure
+      run: |
+        # Di chuyển WinmartMVC ra thư mục cha (ngang hàng với BaiTapLon) 
+        # để khớp với đường dẫn ../WinmartMVC trong docker-compose.yml
+        mv temp-WinmartMVC ../WinmartMVC
 
     - name: Build Docker Images
       run: docker-compose build
@@ -60,7 +63,10 @@ jobs:
       uses: actions/checkout@v4
       with:
         repository: hongmanhunity/WinmartMVC 
-        path: ../WinmartMVC
+        path: temp-WinmartMVC
+
+    - name: Fix Directory Structure
+      run: mv temp-WinmartMVC ../WinmartMVC
 
     - name: Deploy with Docker Compose
       run: |
