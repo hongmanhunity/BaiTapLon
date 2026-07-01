@@ -2,8 +2,8 @@
      session_start();
 
       if(!isset($_SESSION['user_login'])){
-    // Đuổi về trang đăng nhập của WinmartMVC
-    header("Location: /WinmartMVC/Login");
+    // Chuyển hướng về trang đăng nhập của BaiTapLon
+    header("Location: /Baitaplon/Login");
     exit;
 }
      include_once './MVC/bridge.php';

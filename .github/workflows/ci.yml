@@ -14,18 +14,6 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v4
 
-    - name: Checkout WinmartMVC repository
-      uses: actions/checkout@v4
-      with:
-        repository: hongmanhunity/WinmartMVC 
-        path: temp-WinmartMVC
-
-    - name: Fix Directory Structure
-      run: |
-        # Di chuyển WinmartMVC ra thư mục cha (ngang hàng với BaiTapLon) 
-        # để khớp với đường dẫn ../WinmartMVC trong docker compose.yml
-        mv temp-WinmartMVC ../WinmartMVC
-
     - name: Build Docker Images
       run: docker compose build
 
