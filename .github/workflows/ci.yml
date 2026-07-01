@@ -23,25 +23,25 @@ jobs:
     - name: Fix Directory Structure
       run: |
         # Di chuyển WinmartMVC ra thư mục cha (ngang hàng với BaiTapLon) 
-        # để khớp với đường dẫn ../WinmartMVC trong docker-compose.yml
+        # để khớp với đường dẫn ../WinmartMVC trong docker compose.yml
         mv temp-WinmartMVC ../WinmartMVC
 
     - name: Build Docker Images
-      run: docker-compose build
+      run: docker compose build
 
     - name: Start Docker Services
-      run: docker-compose up -d
+      run: docker compose up -d
 
     - name: Check Container Status
       run: |
         # Chờ vài giây để các container khởi động hoàn toàn
         sleep 5
-        docker-compose ps
+        docker compose ps
         
         # Kiểm tra xem có container nào bị thoát (Exit) không
-        if [ "$(docker-compose ps -q | xargs -r docker inspect -f '{{ .State.Running }}' | grep false)" ]; then
+        if [ "$(docker compose ps -q | xargs -r docker inspect -f '{{ .State.Running }}' | grep false)" ]; then
           echo "Một số container không thể khởi động!"
-          docker-compose logs
+          docker compose logs
           exit 1
         else
           echo "Tất cả các container đã chạy thành công."
@@ -71,10 +71,10 @@ jobs:
     - name: Deploy with Docker Compose
       run: |
         # Dừng các container đang chạy và xóa bỏ chúng
-        docker-compose down
+        docker compose down
         
         # Build lại image (để lấy thay đổi code mới nhất) và chạy lại ở chế độ ngầm
-        docker-compose up -d --build
+        docker compose up -d --build
         
         # Dọn dẹp các Docker image cũ (dangling images) để giải phóng dung lượng ổ cứng
         docker image prune -f
