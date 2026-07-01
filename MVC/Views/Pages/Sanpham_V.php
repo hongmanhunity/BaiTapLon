@@ -22,7 +22,7 @@
 
 <div class="card">
     <div class="card-header">
-        <h3><i class="fas fa-box"></i> Quản Lý Sản Phẩm</h3>
+        <h3><i class="fas fa-box"></i> Quản Lý Sản Phẩm 001</h3>
     </div>
     
     <div class="card-body">
