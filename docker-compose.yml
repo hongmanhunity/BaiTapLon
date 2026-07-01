@@ -34,7 +34,7 @@ services:
       - mysql_data:/var/lib/mysql
       # Auto-import sql script if placed in this local directory on initial launch
       - ./db_init:/docker-entrypoint-initdb.d
-    command: --default-authentication-plugin=mysql_native_password
+    command: --default-authentication-plugin=mysql_native_password --lower-case-table-names=1
 
   # Database administration tool (phpMyAdmin)
   phpmyadmin:

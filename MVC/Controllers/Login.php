@@ -7,9 +7,9 @@ class Login extends Controller {
         session_unset();
         session_destroy();
 
-        // 2. Chuyển hướng về trang đăng nhập của WinmartMVC (User)
+        // 2. Chuyển hướng về trang đăng nhập của Baitaplon (User)
         // Hoặc trang Login riêng của Admin tùy bạn
-        header("Location: http://localhost/WinmartMVC/Login");
+        header("Location: http://localhost/Baitaplon/Login");
         exit;
     }
 }

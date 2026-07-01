@@ -89,15 +89,7 @@
                     </div>
 
                     <table class="table-bill">
-                        <thead>
-                            <tr>
-                                <th>Sản Phẩm</th>
-                                <th style="text-align: center;">SL</th>
-                                <th style="text-align: right;">Đơn Giá</th>
-                                <th style="text-align: right;">Thành Tiền</th>
-                                <th style="text-align: center;">Xóa</th>
-                            </tr>
-                        </thead>
+
                         <tbody>
                             <?php
                             $tongtien = 0;
