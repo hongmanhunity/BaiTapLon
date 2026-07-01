@@ -2,7 +2,7 @@
     <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
         <h3>Danh sách Tài khoản</h3>
         <a href="/Baitaplon/Taikhoan/Create" style="background: #28a745; color: white; padding: 8px 15px; text-decoration: none; border-radius: 4px;">
-            <i class="fas fa-plus"></i> Thêm mới
+            <i class="fas fa-plus"></i> Thêm tài khoản
         </a>
     </div>
     <div class="card-body">
