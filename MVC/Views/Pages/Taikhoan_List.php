@@ -10,7 +10,7 @@
             <thead>
                 <tr style="background: #f8f9fa; border-bottom: 2px solid #dee2e6;">
                     <th style="padding: 10px; text-align: left;">ID</th>
-                    <th style="padding: 10px; text-align: left;">Username</th>
+                    <th style="padding: 10px; text-align: left;">Tên tài khoản người dùng</th>
                     <th style="padding: 10px; text-align: left;">Họ tên</th>
                     <th style="padding: 10px; text-align: left;">Quyền hạn</th>
                     <th style="padding: 10px; text-align: center;">Hành động</th>
