@@ -17,7 +17,7 @@ class Login extends Controller {
         }
         
         // Gọi view Login_V, không cần dùng Master layout
-        $this->view("ages/Login_V", []);
+        $this->view("Pages/Login_V", []);
     }
 
     // Xử lý submit Đăng nhập
