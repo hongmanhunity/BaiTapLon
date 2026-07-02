@@ -37,7 +37,7 @@
 
             <div class="menu-title">HỆ THỐNG</div>
             <li><a href="/Baitaplon/Khuyenmai"><i class="fas fa-tags"></i> Khuyến mãi</a></li>
-            <li><a href="/Baitaplon/Phuongthuc"><i class="fas fa-wallet"></i> P.Thức thanh toán</a></li>
+            <li><a href="/Baitaplon/Phuongthuc"><i class="fas fa-wallet"></i> P.Thức Thanh Toán</a></li>
             <li><a href="/Baitaplon/Baocao"><i class="fas fa-wallet"></i> Báo cáo</a></li>
             
             <li><a href="/Baitaplon/Taikhoan"><i class="fas fa-user-cog"></i> Quản lý Tài khoản</a></li>
